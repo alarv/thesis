@@ -1,3 +1,6 @@
+//make mapwrapper 100% 100%
+$("#map_wrapper").css("width", $(window).width());
+$("#map_wrapper").css("height", $(window).height());
 
 var map = L.map('map').setView([51.505, -0.09], 13);
 
