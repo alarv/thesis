@@ -1,5 +1,0 @@
-<?php
-	include ('site/common/header.php');
-	include ('site/' . $page . '.php');
-	include ('site/common/footer.php');
-?>
