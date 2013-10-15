@@ -1,65 +1,19 @@
-<?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-echo 'oh hi';
-?>
 
-
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="leaflet/leaflet.css" />
-    </head>
-    <body>
-        <h1>Leaflet Map</h1>
-        <div id="map"></div>
+<head>
+	<title>Leaflet Quick Start Guide Example</title>
+	<meta charset="utf-8" />
 
-        <script src="leaflet/leaflet.js"></script>
-        <script>
-            var map = L.map('map').setView([51.505, -0.09], 13);
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
-            }).addTo(map);
+	<link rel="stylesheet" href="leaflet/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+</head>
+<body>
+	<div id="map" style="width: 960px; height: 600px;margin:auto;"></div>
 
-
-            L.marker([51.5, -0.09]).addTo(map)
-                    .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-
-            L.circle([51.508, -0.11], 500, {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5
-            }).addTo(map).bindPopup("I am a circle.");
-
-            L.polygon([
-                [51.509, -0.08],
-                [51.503, -0.06],
-                [51.51, -0.047]
-            ]).addTo(map).bindPopup("I am a polygon.");
-
-
-            var popup = L.popup();
-
-            function onMapClick(e) {
-                popup
-                        .setLatLng(e.latlng)
-                        .setContent("You clicked the map at " + e.latlng.toString())
-                        .openOn(map);
-            }
-
-            map.on('click', onMapClick);
-
-        </script>
-    </body>
+	<script src="leaflet/leaflet.js"></script>
+        <script src="js/myjs.js"></script>
+</body>
 </html>
-
