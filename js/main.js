@@ -8,6 +8,22 @@ var Main = {
         	$('footer #copyright #info').html('Copyright &copy ' + update + ', All Rights Reserved');
         }
         
+        $( ".home nav.slide_bar span" ).click(function() {
+		  if( parseInt($( ".home nav.slide_bar" ).css("marginRight")) !=0){
+		  	$( ".home nav.slide_bar" ).animate({
+			    marginRight: 0,
+			  }, 500, function() {
+			    // Animation complete.
+			  });
+		  }else{
+		  	$( ".home nav.slide_bar" ).animate({
+			    marginRight: "-400px",
+			  }, 500, function() {
+			    // Animation complete.
+			  });
+		  }
+		});
+        
         //make mapwrapper 100% 100%
 		$("#map_wrapper").css("width", $(window).width());
 		$("#map_wrapper").css("height", $(window).height());

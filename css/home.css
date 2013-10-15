@@ -1,0 +1,30 @@
+.home #map_wrapper #map{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+.home nav.slide_bar{
+   width: 400px;
+   height: 100%;
+   position: fixed;
+   top: 0;
+   right: 0;
+   margin-right:-400px;
+   background: #333;
+}
+
+.home nav.slide_bar span{
+   width: 30px;
+	height: 70px;
+	position: absolute;
+	left: -30px;
+	top: 45%;
+	cursor: pointer;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: block;
+	background-image: url("../images/icons/pad.png");
+}
