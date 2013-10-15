@@ -119,7 +119,16 @@ header .logo
 	height: 60px;
 	left: 20%;
 	padding: 20px;
+	z-index:9999;
 	text-align: center;
+}
+
+#map_wrapper #map{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
 }
 
 /* FOOTER */

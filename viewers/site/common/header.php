@@ -10,6 +10,7 @@
 	    <meta name="keywords" content="Content">
         <link rel="stylesheet" href="css/reset.css?v=1" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/style.css?v=1" type="text/css" media="screen" />
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
         <link rel="stylesheet" href="css/media.css" type="text/css" media="screen" />
         <script src="js/libraries/jquery-1.10.2.min.js"></script>
         <script src="js/libraries/prefixfree.min.js"></script>

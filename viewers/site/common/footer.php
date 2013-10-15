@@ -9,6 +9,7 @@
         </section> <!--end of wrapper -->
 		<script type="text/javascript" src="js/main.js?v=3"></script>
 		<script type="text/javascript" src="js/libs.js?v=3"></script>
+		<script src="leaflet/leaflet.js"></script>
         <script type="text/javascript">
             Main.Init();
         </script>
