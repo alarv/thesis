@@ -1,10 +1,10 @@
 		<footer>
-            <section>
+           <?php/* <section>
             	footer here
             	<div id="copyright">
                 	Designed and created by <a href="http://www.example.com" target="_blank">Example</a>
                 </div>
-            </section>       
+            </section>  */?>     
         </footer>
         </section> <!--end of wrapper -->
 		<script type="text/javascript" src="js/main.js?v=3"></script>

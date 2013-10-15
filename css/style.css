@@ -128,23 +128,8 @@ header .logo
 
 footer
 {
-	background: #333;
-	position: fixed;
-	height:35px;
-	width:100%;
-	bottom:0;
-}
 
-footer section
-{
-	margin: 0 auto;
-	width: auto;
-	color: white;
-	text-align:center;
-	max-width: 960px;
-	font-size: 13px;
 }
-
 
 /* MISC */
 .clear
