@@ -1,0 +1,18 @@
+/* 
+    Document   : mycss
+    Created on : Oct 15, 2013, 4:08:36 PM
+    Author     : alarv
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#map{
+    height:600px;
+    width:960px;
+    margin:auto;
+}
+
