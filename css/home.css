@@ -14,8 +14,9 @@
    right: 0;
    margin-right:-350px;
    z-index:9999;
-   background: url("../images/icons/nav-noise.png") repeat-y right top, 
-   			   url("../images/icons/nav-background.png") repeat-y right top;
+   background:rgba(0,0,0,0.5);
+/*   background: url("../images/icons/nav-noise.png") repeat-y right top, 
+   			   url("../images/icons/nav-background.png") repeat-y right top;*/
    
 }
 
