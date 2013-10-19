@@ -9,9 +9,10 @@
 </section> <!--end of wrapper -->
 <script type="text/javascript" src="js/main.js?v=3"></script>
 <script type="text/javascript" src="js/libs.js?v=3"></script>
-<script src="js/libraries/d3.v3.min.js"></script>
-<script src="leaflet/leaflet.js"></script>
-<script src="js/libraries/tiles.js"></script>
+<script type="text/javascript" src="js/map.js?v=3"></script>
+<script type="text/javascript" src="js/libraries/d3.v3.min.js"></script>
+<script type="text/javascript" src="leaflet/leaflet.js"></script>
+<script type="text/javascript" src="js/world-states.js"></script>
 <script type="text/javascript">
     Main.Init();
 </script>
