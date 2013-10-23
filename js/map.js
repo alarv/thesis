@@ -1,6 +1,10 @@
 var Map = {
-    geojson:null,
     map:null,
+    path:null,
+    g:null,
+    centered:null,
+    width:$(window).width(),
+	height:$(window).width(),
     Init: function() {
     	
     	//make mapwrapper 100% 100%
@@ -12,60 +16,69 @@ var Map = {
 		// northEast = new L.LatLng(87.54007, 254.53125),
 		// bounds = new L.LatLngBounds(southWest, northEast);
         Map.map = L.map('map', {minZoom: "2"}).setView([45.8288, 5.27344], 3);
-        var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-                key: 'BC9A493B41014CAABB98F0471D759707',
-                styleId: 22677
-            }).addTo(Map.map);
-               	
-        // control that shows state info on hover
-		//var info = L.control();
-		//info.onAdd = function(map) {
-		//this._div = L.DomUtil.create('div', 'info');
-		//            this.update();
-		//            return this._div;
-		//            };
+        
+       var cloudmade  = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+            key: '3c7bcb3ae149402480c8ad65ebd50285',
+            styleId: 111555
+        }).addTo(Map.map);
+        
+		var projection = d3.geo.mercator()
+		    .translate([Map.width / 2, Map.height / 2]);
 		
-		//info.update = function(props) {
-		//this._div.innerHTML = '<h4>US Population Density</h4>' + (props ?
-		//                     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
-		//                     : 'Hover over a state');
-		//};
-
-		//info.addTo(map);
+		Map.path = d3.geo.path()
+		    .projection(projection);
 		
-		Map.geojson = L.geoJson(statesData, {
-                style: Map.Style,
-                onEachFeature: Map.OnEachFeature
-            }).addTo(Map.map);
+		var svg = d3.select("body").append("svg")
+		    .attr("width", Map.width)
+		    .attr("height", Map.height);
+		
+		svg.append("rect")
+		    .attr("class", "background")
+		    .attr("width", Map.width)
+		    .attr("height", Map.height)
+		    .on("click", Map.Clicked);
+		
+		Map.g = svg.append("g");
 
-         Map.map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
-
-		//            var legend = L.control({position: 'bottomright'});
-		//
-		//            legend.onAdd = function(map) {
-		//
-		//                var div = L.DomUtil.create('div', 'info legend'),
-		//                        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-		//                        labels = [],
-		//                        from, to;
-		//
-		//                for (var i = 0; i < grades.length; i++) {
-		//                    from = grades[i];
-		//                    to = grades[i + 1];
-		//
-		//                    labels.push(
-		//                            '<i style="background:' + Map.GetColor(from + 1) + '"></i> ' +
-		//                            from + (to ? '&ndash;' + to : '+'));
-		//                }
-		//
-		//                div.innerHTML = labels.join('<br>');
-		//                return div;
-		//            };
-		//
-		//            legend.addTo(map);
-
+		d3.json("js/world-50m.json", function(error, us) {
+		  Map.g.append("g")
+		      .attr("id", "states")
+		    .selectAll("path")
+		      .data(topojson.feature(us, us.objects.countries).features)
+		    .enter().append("path")
+		      .attr("d", Map.path)
+		      .on("click", Map.Clicked);
+		
+		  Map.g.append("path")
+		      .datum(topojson.mesh(us, us.objects.countries, function(a, b) { return a !== b; }))
+		      .attr("id", "state-borders")
+		      .attr("d", Map.path);
+		});
     },
+    Clicked: function(d) {
+	  var x, y, k;
+	  if (d && Map.centered !== d) {
+	    var centroid = Map.path.centroid(d);
+	    x = centroid[0];
+	    y = centroid[1];
+	    k = 4;
+	    Map.centered = d;
+	  } else {
+	    x = Map.width / 2;
+	    y = Map.height / 2;
+	    k = 1;
+	    Map.centered = null;
+	  }
+	  
+	  Map.g.selectAll("path")
+	  .classed("active", Map.centered && function(d) { return d === Map.centered; });
+	  
+	  Map.g.transition()
+      .duration(750)
+      .attr("transform", "translate(" + Map.width / 2 + "," + Map.height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+  	  .style("stroke-width", 1.5 / k + "px");
+	},
     FixMap: function() {
         $("#map").css("width", $(window).width());
         $("#map").css("height", $(window).height());

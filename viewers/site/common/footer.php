@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/map.js?v=3"></script>
 <script type="text/javascript" src="js/libraries/d3.v3.min.js"></script>
 <script type="text/javascript" src="leaflet/leaflet.js"></script>
-<script type="text/javascript" src="js/world-states.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
 <script type="text/javascript">
     Main.Init();
 </script>
